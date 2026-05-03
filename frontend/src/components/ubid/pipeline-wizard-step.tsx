@@ -226,7 +226,7 @@ export function PipelineStep5({
               {pipeline.isRunning ? 'Pipeline Running...' : 'Run Pipeline'}
             </Button>
             {pipeline.completed && (
-              <Link href="/review" className="flex-1">
+              <Link href="/dashboard/review" className="flex-1">
                 <Button variant="outline" className="w-full">
                   Go to Review Queue →
                 </Button>
