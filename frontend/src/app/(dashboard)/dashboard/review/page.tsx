@@ -137,7 +137,7 @@ export default function ReviewPage() {
                   {/* Feature Breakdown */}
                   <div>
                     <h4 className="font-semibold mb-4">Feature Match Breakdown</h4>
-                    <FeatureScore features={task.features} />
+                    <FeatureScore {...task.features} />
                   </div>
 
                   {/* Decision Reason */}
@@ -162,7 +162,7 @@ export default function ReviewPage() {
                       disabled={!reasoning.trim() || decidingTask === task.id}
                       className="flex-1"
                     >
-                      {decidingTask === task.id && <Spinner size="sm" className="mr-2" />}
+                      {decidingTask === task.id && <Spinner  className="mr-2 size-4" />}
                       <CheckCircle2 className="w-4 h-4 mr-2" />
                       Approve
                     </Button>
@@ -176,7 +176,7 @@ export default function ReviewPage() {
                       disabled={!reasoning.trim() || decidingTask === task.id}
                       className="flex-1"
                     >
-                      {decidingTask === task.id && <Spinner size="sm" className="mr-2" />}
+                      {decidingTask === task.id && <Spinner  className="mr-2 size-4" />}
                       <XCircle className="w-4 h-4 mr-2" />
                       Reject
                     </Button>
@@ -209,7 +209,7 @@ export default function ReviewPage() {
           </div>
 
           {/* Feature Scores */}
-          <FeatureScore features={task.features} size="sm" />
+          <FeatureScore {...task.features} />
         </div>
       </CardContent>
     </Card>
