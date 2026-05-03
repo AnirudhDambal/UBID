@@ -50,12 +50,12 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   }
 
   return (
-    <div className="h-screen flex bg-slate-50 dark:bg-slate-950">
+    <div className="h-screen flex bg-background dark:bg-background">
       {/* Sidebar */}
       <aside
         className={`${
           sidebarOpen ? 'w-64' : 'w-20'
-        } bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 flex flex-col transition-all duration-300`}
+        } bg-card dark:bg-card border-r border-border flex flex-col transition-all duration-300`}
       >
         {/* Logo */}
         <div className="p-4 border-b border-slate-200 dark:border-slate-800">
@@ -111,16 +111,16 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       {/* Main Content */}
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Header */}
-        <header className="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 px-8 py-4 flex items-center justify-between">
-          <h2 className="text-sm font-semibold text-slate-600 dark:text-slate-400">
+        <header className="bg-card dark:bg-card border-b border-border px-8 py-4 flex items-center justify-between">
+          <h2 className="text-sm font-semibold text-muted-foreground">
             {navItems.find((item) => isActive(item.href))?.label || 'Dashboard'}
           </h2>
 
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-2 text-sm">
               <div className="w-2 h-2 rounded-full bg-green-600" />
-              <span className="text-slate-600 dark:text-slate-400">
-                Logged in as <span className="font-medium text-slate-900 dark:text-white">admin@ubid.gov</span>
+              <span className="text-muted-foreground">
+                Logged in as <span className="font-medium text-foreground">admin@ubid.gov</span>
               </span>
             </div>
             <Button variant="ghost" size="sm">

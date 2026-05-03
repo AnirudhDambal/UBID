@@ -47,6 +47,11 @@ const mockEvents: TimelineEvent[] = [
 
 export default function ActivityPage() {
   const [events] = useState<TimelineEvent[]>(mockEvents)
+  const [mounted, setMounted] = React.useState(false)
+
+  React.useEffect(() => {
+    setMounted(true)
+  }, [])
 
   const stats = [
     { label: 'Active UBIDs', value: '1,247', icon: Zap, color: 'bg-green-500' },
@@ -118,11 +123,17 @@ export default function ActivityPage() {
                     </div>
 
                     <p className="text-xs text-slate-600 dark:text-slate-400 mb-2">
-                      {event.timestamp.toLocaleDateString()} at{' '}
-                      {event.timestamp.toLocaleTimeString([], {
-                        hour: '2-digit',
-                        minute: '2-digit',
-                      })}
+                      {mounted ? (
+                        <>
+                          {event.timestamp.toLocaleDateString()} at{' '}
+                          {event.timestamp.toLocaleTimeString([], {
+                            hour: '2-digit',
+                            minute: '2-digit',
+                          })}
+                        </>
+                      ) : (
+                        <span>Loading date...</span>
+                      )}
                     </p>
 
                     <div className="mt-3 p-2 bg-white dark:bg-slate-800 rounded border border-slate-200 dark:border-slate-700">
