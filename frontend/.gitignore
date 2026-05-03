@@ -43,5 +43,5 @@ next-env.d.ts
 /drizzle
 
 # API testing scripts
-frontend/test_connect_api.sh
-frontend/test_connect_api.ps1
+test_connect_api.sh
+test_connect_api.ps1
