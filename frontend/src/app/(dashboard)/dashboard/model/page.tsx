@@ -63,14 +63,14 @@ export default function ModelPage() {
     <div className="space-y-6">
       {/* Header */}
       <div>
-        <h1 className="text-3xl font-bold">Model Health</h1>
+        <h1 className="text-4xl font-semibold tracking-tight">Model Health</h1>
         <p className="text-slate-600 dark:text-slate-400 mt-2">
           Monitor and manage entity resolution model performance
         </p>
       </div>
 
       {/* Current Model */}
-      <Card className="border-blue-200 dark:border-blue-800 bg-blue-50 dark:bg-blue-900/20">
+      <Card className="border-primary/20 bg-primary/5">
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Badge>Active</Badge>
@@ -82,19 +82,19 @@ export default function ModelPage() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             <div>
               <p className="text-sm text-slate-600 dark:text-slate-400">Precision</p>
-              <p className="text-2xl font-bold text-green-600">99.4%</p>
+              <p className="text-2xl font-bold text-emerald-600">99.4%</p>
             </div>
             <div>
               <p className="text-sm text-slate-600 dark:text-slate-400">Recall</p>
-              <p className="text-2xl font-bold text-green-600">98.7%</p>
+              <p className="text-2xl font-bold text-emerald-600">98.7%</p>
             </div>
             <div>
               <p className="text-sm text-slate-600 dark:text-slate-400">Match Threshold</p>
-              <p className="text-2xl font-bold text-blue-600">0.87</p>
+              <p className="text-2xl font-bold text-primary">0.87</p>
             </div>
             <div>
               <p className="text-sm text-slate-600 dark:text-slate-400">Uptime</p>
-              <p className="text-2xl font-bold text-green-600">100%</p>
+              <p className="text-2xl font-bold text-emerald-600">100%</p>
             </div>
           </div>
         </CardContent>
@@ -113,7 +113,7 @@ export default function ModelPage() {
                 <p className="text-sm text-slate-600 dark:text-slate-400 mb-1">{metric.label}</p>
                 <div className="flex items-baseline gap-2">
                   <p className="text-2xl font-bold">{metric.value}</p>
-                  <span className="text-xs text-green-600">{metric.trend}</span>
+                  <span className="text-xs text-emerald-600">{metric.trend}</span>
                 </div>
               </div>
             ))}
@@ -122,10 +122,10 @@ export default function ModelPage() {
       </Card>
 
       {/* Threshold Proposal */}
-      <Card className="border-yellow-200 dark:border-yellow-800 bg-yellow-50 dark:bg-yellow-900/20">
+      <Card className="border-amber-200/70 bg-amber-50/70 dark:bg-amber-500/10">
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
-            <AlertCircle className="w-5 h-5 text-yellow-600" />
+            <AlertCircle className="w-5 h-5 text-amber-600" />
             Pending Threshold Proposal
           </CardTitle>
           <CardDescription>Review and apply recommended threshold change</CardDescription>
@@ -134,11 +134,11 @@ export default function ModelPage() {
           <div className="grid grid-cols-2 gap-4">
             <div className="p-4 bg-white dark:bg-slate-950 rounded-lg border">
               <p className="text-xs text-slate-600 dark:text-slate-400 mb-1">Current Threshold</p>
-              <p className="text-2xl font-bold text-blue-600">{proposal.threshold}</p>
+              <p className="text-2xl font-bold text-primary">{proposal.threshold}</p>
             </div>
             <div className="p-4 bg-white dark:bg-slate-950 rounded-lg border">
               <p className="text-xs text-slate-600 dark:text-slate-400 mb-1">Proposed Threshold</p>
-              <p className="text-2xl font-bold text-green-600">{proposal.proposed}</p>
+              <p className="text-2xl font-bold text-emerald-600">{proposal.proposed}</p>
             </div>
           </div>
 
@@ -203,7 +203,7 @@ export default function ModelPage() {
                     <p className="text-xs text-slate-600 dark:text-slate-400">Recall</p>
                   </div>
                   <div className="text-right">
-                    <p className={`font-medium ${version.delta > 0 ? 'text-green-600' : 'text-red-600'}`}>
+                    <p className="font-medium">
                       {version.delta > 0 ? '+' : ''}{(version.delta * 100).toFixed(1)}%
                     </p>
                     <p className="text-xs text-slate-600 dark:text-slate-400">Delta</p>

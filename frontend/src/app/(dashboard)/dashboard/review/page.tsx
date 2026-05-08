@@ -219,7 +219,7 @@ export default function ReviewPage() {
     <div className="space-y-6">
       {/* Header */}
       <div>
-        <h1 className="text-3xl font-bold">Review Queue</h1>
+        <h1 className="text-4xl font-semibold tracking-tight">Review Queue</h1>
         <p className="text-slate-600 dark:text-slate-400 mt-2">
           Approve or reject entity matches for UBID creation
         </p>
@@ -277,9 +277,9 @@ export default function ReviewPage() {
       </Tabs>
 
       {/* Info */}
-      <Card className="border-blue-200 dark:border-blue-800 bg-blue-50 dark:bg-blue-900/20">
+      <Card className="border-primary/20 bg-primary/5">
         <CardContent className="pt-6">
-          <p className="text-sm text-blue-900 dark:text-blue-200 flex items-start gap-2">
+          <p className="text-sm text-slate-700 dark:text-slate-200 flex items-start gap-2">
             <HelpCircle className="w-4 h-4 mt-0.5 flex-shrink-0" />
             <span>
               Review the feature scores carefully. Match probability &ge; 85% are recommended for approval, 60-85% need careful review, and &lt; 60% are typically rejected.

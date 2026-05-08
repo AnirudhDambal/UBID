@@ -100,7 +100,7 @@ export default function QueryPage() {
     <div className="space-y-6">
       {/* Header */}
       <div>
-        <h1 className="text-3xl font-bold">Query Console</h1>
+        <h1 className="text-4xl font-semibold tracking-tight">Query Console</h1>
         <p className="text-slate-600 dark:text-slate-400 mt-2">
           Run pre-built queries to analyze UBID data
         </p>
@@ -116,13 +116,13 @@ export default function QueryPage() {
                   <CardTitle className="text-lg">{query.name}</CardTitle>
                   <CardDescription className="mt-1">{query.description}</CardDescription>
                 </div>
-                <Badge variant="secondary">{query.id}</Badge>
+                <Badge className="bg-secondary/40 text-secondary-foreground">{query.id}</Badge>
               </div>
             </CardHeader>
 
             <CardContent className="space-y-4">
               {/* Query Code */}
-              <div className="bg-slate-900 dark:bg-black rounded-lg p-4">
+              <div className="bg-slate-950 rounded-lg p-4 border border-slate-800">
                 <div className="flex items-start justify-between mb-2">
                   <span className="text-xs font-semibold text-slate-400">SQL</span>
                   <Button
@@ -134,7 +134,7 @@ export default function QueryPage() {
                     <Copy className="w-4 h-4" />
                   </Button>
                 </div>
-                <pre className="font-mono text-sm text-green-400 overflow-x-auto">
+                <pre className="font-mono text-sm text-emerald-200 overflow-x-auto">
                   <code>{query.query}</code>
                 </pre>
               </div>
@@ -150,7 +150,7 @@ export default function QueryPage() {
                     </Badge>
                   </div>
 
-                  <div className="bg-slate-50 dark:bg-slate-900 rounded-lg p-4 max-h-48 overflow-y-auto">
+                  <div className="bg-slate-50 dark:bg-slate-900 rounded-lg p-4 max-h-48 overflow-y-auto border border-slate-200 dark:border-slate-800">
                     <div className="font-mono text-xs">
                       {JSON.stringify(queryResults[query.id]?.data, null, 2)}
                     </div>
@@ -182,9 +182,9 @@ export default function QueryPage() {
       </div>
 
       {/* Info */}
-      <Card className="border-blue-200 dark:border-blue-800 bg-blue-50 dark:bg-blue-900/20">
+      <Card className="border-primary/20 bg-primary/5">
         <CardContent className="pt-6">
-          <p className="text-sm text-blue-900 dark:text-blue-200">
+          <p className="text-sm text-slate-700 dark:text-slate-200">
             💡 Custom SQL queries are available to admins only. Contact your administrator to
             execute custom queries or create new saved queries.
           </p>

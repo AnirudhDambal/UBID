@@ -99,17 +99,20 @@ export default function AuditPage() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div>
-        <h1 className="text-3xl font-bold">Audit Log</h1>
-        <p className="text-slate-600 dark:text-slate-400 mt-2">
-          Immutable record of all platform operations and decisions
-        </p>
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+        <div>
+          <h1 className="text-4xl font-semibold tracking-tight">Audit Log</h1>
+          <p className="text-slate-600 dark:text-slate-400 mt-2">
+            Immutable record of all platform operations and decisions
+          </p>
+        </div>
+        <Badge className="bg-primary/10 text-primary">Compliance</Badge>
       </div>
 
       {/* Security Notice */}
-      <Card className="border-blue-200 dark:border-blue-800 bg-blue-50 dark:bg-blue-900/20">
+      <Card className="border-primary/20 bg-primary/5">
         <CardContent className="pt-6">
-          <p className="text-sm text-blue-900 dark:text-blue-200">
+          <p className="text-sm text-slate-700 dark:text-slate-200">
             🔒 This audit log is immutable and append-only. All entries are cryptographically signed
             for compliance and forensic analysis.
           </p>
@@ -151,10 +154,10 @@ export default function AuditPage() {
       {/* Logs Table */}
       <Card>
         <CardContent className="pt-6">
-          <div className="overflow-x-auto">
+          <div className="overflow-x-auto rounded-xl border border-slate-200/70 dark:border-slate-800/70 bg-white/80 dark:bg-slate-900/70">
             <table className="w-full text-sm">
-              <thead>
-                <tr className="border-b">
+              <thead className="bg-slate-50 dark:bg-slate-900">
+                <tr className="border-b border-slate-200 dark:border-slate-800">
                   <th className="text-left py-3 px-4 font-semibold">Seq#</th>
                   <th className="text-left py-3 px-4 font-semibold">Timestamp</th>
                   <th className="text-left py-3 px-4 font-semibold">Operation</th>
@@ -167,8 +170,8 @@ export default function AuditPage() {
                 {filteredLogs.map((log, idx) => (
                   <tr
                     key={log.id}
-                    className={`border-b ${
-                      idx % 2 === 0 ? 'bg-slate-50 dark:bg-slate-900/30' : ''
+                    className={`border-b border-slate-200 dark:border-slate-800 ${
+                      idx % 2 === 0 ? 'bg-white dark:bg-slate-950' : ''
                     } hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors`}
                   >
                     <td className="py-3 px-4 font-mono text-xs">{log.seqNumber}</td>
@@ -189,8 +192,11 @@ export default function AuditPage() {
                     <td className="py-3 px-4 text-xs">{log.userId}</td>
                     <td className="py-3 px-4">
                       <Badge
-                        variant={log.status === 'success' ? 'default' : 'destructive'}
-                        className="text-xs capitalize"
+                        className={`text-xs capitalize ${
+                          log.status === 'success'
+                            ? 'bg-emerald-500/15 text-emerald-700 dark:text-emerald-300'
+                            : 'bg-rose-500/15 text-rose-700 dark:text-rose-300'
+                        }`}
                       >
                         {log.status}
                       </Badge>

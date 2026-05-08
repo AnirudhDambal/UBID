@@ -81,7 +81,7 @@ export default function UBIDsPage() {
     <div className="space-y-6">
       {/* Header */}
       <div>
-        <h1 className="text-3xl font-bold">UBID Registry</h1>
+        <h1 className="text-4xl font-semibold tracking-tight">UBID Registry</h1>
         <p className="text-slate-600 dark:text-slate-400 mt-2">
           Browse and manage Universal Business Identifiers
         </p>
@@ -177,7 +177,16 @@ export default function UBIDsPage() {
                             <p className="text-slate-600 dark:text-slate-400 text-xs mb-1">
                               Status
                             </p>
-                            <Badge variant="default" className="capitalize">
+                            <Badge
+                              variant={
+                                ubid.status === 'active'
+                                  ? 'default'
+                                  : ubid.status === 'dormant'
+                                    ? 'secondary'
+                                    : 'destructive'
+                              }
+                              className="capitalize"
+                            >
                               {ubid.status}
                             </Badge>
                           </div>

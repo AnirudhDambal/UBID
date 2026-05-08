@@ -49,19 +49,22 @@ export default function ActivityPage() {
   const [events] = useState<TimelineEvent[]>(mockEvents)
 
   const stats = [
-    { label: 'Active UBIDs', value: '1,247', icon: Zap, color: 'bg-green-500' },
-    { label: 'Dormant UBIDs', value: '456', icon: AlertCircle, color: 'bg-yellow-500' },
-    { label: 'Recent Events', value: `${events.length}`, icon: Activity, color: 'bg-blue-500' },
+    { label: 'Active UBIDs', value: '1,247', icon: Zap, tone: 'bg-emerald-500/15 text-emerald-700 dark:text-emerald-300' },
+    { label: 'Dormant UBIDs', value: '456', icon: AlertCircle, tone: 'bg-amber-500/15 text-amber-700 dark:text-amber-300' },
+    { label: 'Recent Events', value: `${events.length}`, icon: Activity, tone: 'bg-sky-500/15 text-sky-700 dark:text-sky-300' },
   ]
 
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div>
-        <h1 className="text-3xl font-bold">Activity Status</h1>
-        <p className="text-slate-600 dark:text-slate-400 mt-2">
-          Monitor UBID status and activity events
-        </p>
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+        <div>
+          <h1 className="text-4xl font-semibold tracking-tight">Activity Status</h1>
+          <p className="text-slate-600 dark:text-slate-400 mt-2">
+            Monitor UBID status and activity events
+          </p>
+        </div>
+        <Badge className="bg-primary/10 text-primary">Timeline View</Badge>
       </div>
 
       {/* Stats */}
@@ -69,15 +72,15 @@ export default function ActivityPage() {
         {stats.map((stat) => {
           const Icon = stat.icon
           return (
-            <Card key={stat.label}>
+            <Card key={stat.label} className="border-slate-200/70 dark:border-slate-800/70 bg-white/80 dark:bg-slate-900/80 backdrop-blur shadow-sm">
               <CardContent className="pt-6">
                 <div className="flex items-start justify-between">
                   <div>
                     <p className="text-sm text-slate-600 dark:text-slate-400">{stat.label}</p>
-                    <p className="text-2xl font-bold mt-2">{stat.value}</p>
+                    <p className="text-2xl font-semibold mt-2">{stat.value}</p>
                   </div>
-                  <div className={`${stat.color} p-3 rounded-lg`}>
-                    <Icon className="w-5 h-5 text-white" />
+                  <div className={`rounded-xl p-3 ${stat.tone}`}>
+                    <Icon className="w-5 h-5" />
                   </div>
                 </div>
               </CardContent>
@@ -87,7 +90,7 @@ export default function ActivityPage() {
       </div>
 
       {/* Activity Timeline */}
-      <Card>
+      <Card className="border-slate-200/70 dark:border-slate-800/70 bg-white/80 dark:bg-slate-900/80 backdrop-blur">
         <CardHeader>
           <CardTitle>Recent Activity Timeline</CardTitle>
           <CardDescription>Latest events affecting UBID status</CardDescription>
@@ -98,7 +101,7 @@ export default function ActivityPage() {
               <div key={event.id} className="flex gap-4">
                 {/* Timeline line */}
                 <div className="flex flex-col items-center">
-                  <div className="w-4 h-4 rounded-full bg-blue-600 ring-4 ring-blue-100 dark:ring-blue-900" />
+                  <div className="w-4 h-4 rounded-full bg-primary ring-4 ring-primary/20" />
                   {index < events.length - 1 && (
                     <div className="w-1 h-12 bg-slate-200 dark:bg-slate-700 mt-2" />
                   )}
@@ -106,7 +109,7 @@ export default function ActivityPage() {
 
                 {/* Event content */}
                 <div className="flex-1 pb-4">
-                  <div className="bg-slate-50 dark:bg-slate-900 rounded-lg p-4">
+                  <div className="bg-white/85 dark:bg-slate-900/80 rounded-xl p-4 border border-slate-200/70 dark:border-slate-800/70 shadow-sm">
                     <div className="flex items-start justify-between mb-2">
                       <div>
                         <h4 className="font-semibold">{event.businessName}</h4>
@@ -125,7 +128,7 @@ export default function ActivityPage() {
                       })}
                     </p>
 
-                    <div className="mt-3 p-2 bg-white dark:bg-slate-800 rounded border border-slate-200 dark:border-slate-700">
+                    <div className="mt-3 p-2 bg-slate-50 dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-800">
                       <p className="text-xs font-mono text-slate-700 dark:text-slate-300">
                         <span className="font-semibold">Rule: </span>
                         {event.rule}
@@ -140,23 +143,23 @@ export default function ActivityPage() {
       </Card>
 
       {/* Status Legend */}
-      <Card>
+      <Card className="border-slate-200/70 dark:border-slate-800/70 bg-white/80 dark:bg-slate-900/80 backdrop-blur">
         <CardHeader>
           <CardTitle className="text-lg">Status Classification Rules</CardTitle>
         </CardHeader>
         <CardContent className="space-y-3">
           <div className="flex items-start gap-3">
-            <Badge className="mt-1">Active</Badge>
+            <Badge className="mt-1 bg-emerald-500/15 text-emerald-700 dark:text-emerald-300">Active</Badge>
             <p className="text-sm">Recent compliance events, regular activity, or ongoing operations</p>
           </div>
           <div className="flex items-start gap-3">
-            <Badge variant="secondary" className="mt-1">
+            <Badge className="mt-1 bg-amber-500/15 text-amber-700 dark:text-amber-300">
               Dormant
             </Badge>
             <p className="text-sm">No activity in past 18 months or pending verification</p>
           </div>
           <div className="flex items-start gap-3">
-            <Badge variant="destructive" className="mt-1">
+            <Badge className="mt-1 bg-rose-500/15 text-rose-700 dark:text-rose-300">
               Closed
             </Badge>
             <p className="text-sm">Officially shut down, deregistered, or merged with another entity</p>

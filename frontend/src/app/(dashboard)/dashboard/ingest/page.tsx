@@ -186,7 +186,7 @@ export default function IngestPage() {
     <div className="space-y-6">
       {/* Header */}
       <div>
-        <h1 className="text-3xl font-bold">Data Ingestion Wizard</h1>
+        <h1 className="text-4xl font-semibold tracking-tight">Data Ingestion Wizard</h1>
         <p className="text-slate-600 dark:text-slate-400 mt-2">
           Connect your database and map fields for entity resolution
         </p>
@@ -221,7 +221,7 @@ export default function IngestPage() {
                     onClick={() => handleSelectDB(db)}
                     className={`p-4 rounded-lg border-2 transition-colors text-left ${
                       connection.dbType === db
-                        ? 'border-blue-600 bg-blue-50 dark:bg-blue-900/20'
+                        ? 'border-primary/40 bg-primary/5 shadow-sm'
                         : 'border-slate-200 dark:border-slate-700 hover:border-slate-300 dark:hover:border-slate-600'
                     }`}
                   >
@@ -271,34 +271,34 @@ export default function IngestPage() {
                   </Button>
 
                   {connection.error && (
-                    <div className="p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg flex gap-2">
-                      <AlertCircle className="w-4 h-4 text-red-600 flex-shrink-0 mt-0.5" />
-                      <p className="text-sm text-red-700 dark:text-red-200">{connection.error}</p>
+                    <div className="p-3 bg-rose-500/10 border border-rose-500/20 rounded-lg flex gap-2">
+                      <AlertCircle className="w-4 h-4 text-rose-600 flex-shrink-0 mt-0.5" />
+                      <p className="text-sm text-rose-700 dark:text-rose-200">{connection.error}</p>
                     </div>
                   )}
 
                   {connection.latency !== null && (
-                    <div className="p-3 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg">
+                    <div className="p-3 bg-emerald-500/10 border border-emerald-500/20 rounded-lg">
                       <div className="flex items-center gap-2 mb-2">
-                        <Check className="w-4 h-4 text-green-600" />
-                        <p className="text-sm font-medium text-green-700 dark:text-green-200">
+                        <Check className="w-4 h-4 text-emerald-600" />
+                        <p className="text-sm font-medium text-emerald-700 dark:text-emerald-200">
                           Connection successful
                         </p>
                       </div>
-                      <p className="text-xs text-green-600 dark:text-green-300">
+                      <p className="text-xs text-emerald-600 dark:text-emerald-300">
                         Latency: {connection.latency.toFixed(0)}ms
                       </p>
                     </div>
                   )}
 
                   {connection.detectedTables.length > 0 && (
-                    <div className="p-3 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg">
-                      <p className="text-sm font-medium text-blue-700 dark:text-blue-200 mb-2">
+                    <div className="p-3 bg-sky-500/10 border border-sky-500/20 rounded-lg">
+                      <p className="text-sm font-medium text-sky-700 dark:text-sky-200 mb-2">
                         Detected Tables:
                       </p>
                       <div className="flex flex-wrap gap-2">
                         {connection.detectedTables.map((table) => (
-                          <Badge key={table} variant="secondary" className="text-xs">
+                          <Badge key={table} className="text-xs bg-sky-500/15 text-sky-700 dark:text-sky-200">
                             {table}
                           </Badge>
                         ))}
