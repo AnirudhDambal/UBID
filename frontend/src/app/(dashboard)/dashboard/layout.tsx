@@ -3,6 +3,7 @@
 import React, { useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import {
   BarChart3,
@@ -58,8 +59,8 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         {/* Logo */}
         <div className="p-4 border-b border-slate-200/70 dark:border-slate-800/70">
           <Link href="/dashboard" className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 text-white flex items-center justify-center font-bold text-lg shadow-lg shadow-primary/20">
-              U
+            <div className="w-10 h-10 rounded-xl bg-white/90 dark:bg-slate-900/80 border border-slate-200/70 dark:border-slate-800/70 flex items-center justify-center shadow-sm">
+              <Image src="/ubid.svg" alt="UBID" width={28} height={28} />
             </div>
             {sidebarOpen && (
               <div>

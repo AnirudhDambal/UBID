@@ -23,6 +23,9 @@ const spaceMono = Space_Mono({
 export const metadata: Metadata = {
   title: "UBID Platform",
   description: "Universal Business Identifier Platform - Entity Resolution & Deduplication",
+  icons: {
+    icon: "/ubid.svg",
+  },
 };
 
 export default function RootLayout({

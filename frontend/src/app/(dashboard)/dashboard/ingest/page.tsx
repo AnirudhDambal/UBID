@@ -10,6 +10,7 @@ import { Spinner } from '@/components/ui/spinner'
 import { StepperHeader } from '@/components/ubid/stepper-header'
 import { PipelineStep5 } from '@/components/ubid/pipeline-wizard-step'
 import { Database, Check, AlertCircle, Eye } from 'lucide-react'
+import Image from 'next/image'
 
 interface DBConnection {
   dbType: 'mongodb' | 'mysql' | 'postgres' | null
@@ -25,9 +26,9 @@ interface FieldMapping {
 }
 
 const dbIcons: { [key: string]: string } = {
-  mongodb: '🍃',
-  mysql: '🐬',
-  postgres: '🐘',
+  mongodb: '/db/mongodb.png',
+  mysql: '/db/mysql.png',
+  postgres: '/db/pgsql.png',
 }
 
 const dbDescriptions: { [key: string]: string } = {
@@ -225,7 +226,9 @@ export default function IngestPage() {
                         : 'border-slate-200 dark:border-slate-700 hover:border-slate-300 dark:hover:border-slate-600'
                     }`}
                   >
-                    <div className="text-3xl mb-2">{dbIcons[db]}</div>
+                    <div className="text-3xl mb-2">
+                      <Image src={dbIcons[db]} alt={dbDescriptions[db]} width={48} height={48} />
+                    </div>
                     <p className="font-semibold">{dbDescriptions[db]}</p>
                   </button>
                 ))}
