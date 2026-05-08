@@ -1,73 +1,50 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { getServerSession } from 'next-auth'
+import { authOptions } from '@/lib/auth'
+import {
+  SCHEMA_FIXTURES,
+  DB_VERSION_MAP,
+  validateUrl,
+  parseHost,
+  parseDatabase,
+} from '@/lib/ingest/schema-fixtures'
 
-// Mock schema data for different database types
-const mockSchemas: Record<string, { tables: string[] }> = {
-  mongodb: {
-    tables: [
-      'customers',
-      'orders',
-      'transactions',
-      'products',
-      'shipments',
-    ],
-  },
-  mysql: {
-    tables: [
-      'businesses',
-      'registrations',
-      'licenses',
-      'inspections',
-      'compliance_records',
-    ],
-  },
-  postgres: {
-    tables: [
-      'factories',
-      'workers',
-      'certifications',
-      'safety_audits',
-      'environmental_reports',
-    ],
-  },
-}
+export async function POST(req: NextRequest) {
+  // const session = await getServerSession(authOptions)
+  // if (!session) {
+  //   return NextResponse.json({ ok: false, error: { code: 'UNAUTHORIZED' } }, { status: 401 })
+  // }
 
-export async function POST(request: NextRequest) {
-  try {
-    const body = await request.json()
-    const { db_type, url } = body
+  const body = await req.json()
+  const { db_type, url, system_label, environment } = body
 
-    // Validate input
-    if (!db_type || !url) {
-      return NextResponse.json(
-        { error: 'Missing db_type or url' },
-        { status: 400 }
-      )
-    }
-
-    // Validate db_type
-    if (!['mongodb', 'mysql', 'postgres'].includes(db_type)) {
-      return NextResponse.json(
-        { error: 'Invalid db_type. Must be mongodb, mysql, or postgres' },
-        { status: 400 }
-      )
-    }
-
-    // Simulate connection delay
-    await new Promise((resolve) => setTimeout(resolve, 800))
-
-    // Return mock schema based on db_type
-    const schema = mockSchemas[db_type as keyof typeof mockSchemas]
-
+  // Validate required fields
+  if (!db_type || !url || !system_label) {
     return NextResponse.json({
-      success: true,
-      db_type,
-      tables: schema.tables,
-      connection_time: new Date().toISOString(),
-    })
-  } catch (error) {
-    return NextResponse.json(
-      { error: 'Connection failed: ' + (error instanceof Error ? error.message : 'Unknown error') },
-      { status: 500 }
-    )
+      ok: false,
+      error: { code: 'MISSING_FIELD', message: 'db_type, url, and system_label are required' }
+    }, { status: 400 })
   }
+
+  // Validate URL format
+  const urlError = validateUrl(db_type, url)
+  if (urlError) {
+    return NextResponse.json({ ok: false, error: urlError }, { status: 400 })
+  }
+
+  // Simulate connection latency (never actually connects)
+  await new Promise(r => setTimeout(r, 38 + Math.floor(Math.random() * 34)))
+
+  return NextResponse.json({
+    ok: true,
+    connection: {
+      db_type,
+      host: parseHost(url),
+      database: parseDatabase(url),
+      latency_ms: 38 + Math.floor(Math.random() * 34),
+      db_version: DB_VERSION_MAP[db_type as keyof typeof DB_VERSION_MAP],
+      mode: 'simulated',
+    },
+    schema: SCHEMA_FIXTURES[db_type as keyof typeof SCHEMA_FIXTURES],
+  })
 }
